@@ -2,8 +2,7 @@
 Database connection and interaction module.
 """
 
-import os
-
+from sqlalchemy import text
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 
@@ -53,3 +52,22 @@ def get_db_engine(
     )
 
     return engine
+
+def create_db(database_name: str, engine: Engine) -> None:
+    """
+    Create a new database if it does not exist.
+
+    Parameters
+    ----------
+    database_name : str
+        Name of the database to create.
+    engine : Engine
+        SQLAlchemy engine instance.
+    """
+
+    query = text(f"CREATE DATABASE IF NOT EXISTS {database_name};")
+
+    # We use begin() instead of connect() to ensure the command
+    # is executed in a transaction
+    with engine.begin() as connection:
+        connection.execute(query)
