@@ -53,20 +53,3 @@ def get_db_engine(
     )
 
     return engine
-
-
-# Example usage
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-
-    load_dotenv()
-
-    db_engine = get_db_engine(
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-        host=os.getenv("DB_HOST"),
-        port=int(os.getenv("DB_PORT", 3306)),
-        database=os.getenv("DB_NAME"),
-        echo=True,
-    )
-    print("Database engine created successfully:", db_engine)
