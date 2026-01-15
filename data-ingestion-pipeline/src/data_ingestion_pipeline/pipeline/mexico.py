@@ -3,9 +3,8 @@ import os
 import pandas as pd
 from dotenv import load_dotenv
 
-from data_ingestion_pipeline.db import create_db, get_db_engine
-from data_ingestion_pipeline.extract import extract_persons_by_country
-from data_ingestion_pipeline.load import load_df_to_db
+from data_ingestion_pipeline.db import get_db_engine
+from data_ingestion_pipeline.pipeline.persons import run_persons_by_country_pipeline
 
 load_dotenv()
 
@@ -24,6 +23,7 @@ def run_mexico_pipeline() -> None:
 
     DB_RAW: str = "wca"
     DB_MX: str = "wca_mexico"
+    COUNTRY_ID: str = "Mexico"
 
     engine = get_db_engine(
         user=USER,
@@ -33,19 +33,16 @@ def run_mexico_pipeline() -> None:
         database=DB_RAW,
     )
 
-    create_db(database_name=DB_MX, engine=engine)
-
-    persons: pd.DataFrame = extract_persons_by_country(
+    # ---------- Persons by Country Pipeline ----------
+    print("Loading Mexico Persons data...")
+    run_persons_by_country_pipeline(
         engine=engine,
-        country_id="Mexico",
+        country_id=COUNTRY_ID,
+        db_country=DB_MX,
     )
 
-    load_df_to_db(
-        df=persons,
-        engine=engine,
-        target_db=DB_MX,
-        target_table="persons",
-        method="replace",
-    )
+    # ---------- Results by Country Pipeline ----------
+    # TODO: Implement Results by Country Pipeline
 
-    print("Mexico data ingestion pipeline completed successfully.")
+    # ---------- End of Pipeline ----------
+    print("Mexico data ingestion pipeline completed.")
