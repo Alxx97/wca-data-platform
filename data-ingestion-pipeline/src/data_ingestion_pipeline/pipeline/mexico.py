@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 from data_ingestion_pipeline.db import get_db_engine
 from data_ingestion_pipeline.pipeline.persons import run_persons_by_country_pipeline
+from data_ingestion_pipeline.pipeline.results import run_results_by_country_pipeline
 
 load_dotenv()
 
@@ -42,7 +43,12 @@ def run_mexico_pipeline() -> None:
     )
 
     # ---------- Results by Country Pipeline ----------
-    # TODO: Implement Results by Country Pipeline
+    print("Loading Mexico Results data...")
+    run_results_by_country_pipeline(
+        engine=engine,
+        country_id=COUNTRY_ID,
+        db_country=DB_MX,
+    )
 
     # ---------- End of Pipeline ----------
     print("Mexico data ingestion pipeline completed.")
