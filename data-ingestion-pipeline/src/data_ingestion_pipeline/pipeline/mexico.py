@@ -7,6 +7,7 @@ from data_ingestion_pipeline.db import get_db_engine
 from data_ingestion_pipeline.db import create_db
 from .competitions import run_competitions_by_persons_of_country_pipeline
 from .continents import run_continents_pipeline
+from .countries import run_countries_pipeline
 from .persons import run_persons_by_country_pipeline
 from .results import run_results_by_country_pipeline
 
@@ -49,6 +50,12 @@ def run_mexico_pipeline() -> None:
 
     # ---------- Continents Pipeline ----------
     run_continents_pipeline(
+        engine=engine,
+        target_db=DB_MX,
+    )
+
+    # ---------- Countries Pipeline ----------
+    run_countries_pipeline(
         engine=engine,
         target_db=DB_MX,
     )

@@ -4,6 +4,7 @@ Module for data extraction.
 
 from .competitions import extract_competitions_by_persons_of_country
 from .continents import extract_continents
+from .countries import extract_countries
 from .persons import extract_persons_by_country
 from .results import extract_results_by_country
 
