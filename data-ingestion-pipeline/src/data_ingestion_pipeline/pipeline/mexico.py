@@ -4,6 +4,8 @@ from sqlalchemy.engine import Engine
 from dotenv import load_dotenv
 
 from data_ingestion_pipeline.db import get_db_engine
+from data_ingestion_pipeline.db import create_db
+from data_ingestion_pipeline.pipeline.continents import run_continents_pipeline
 from data_ingestion_pipeline.pipeline.competitions import run_competitions_by_persons_of_country_pipeline
 from data_ingestion_pipeline.pipeline.persons import run_persons_by_country_pipeline
 from data_ingestion_pipeline.pipeline.results import run_results_by_country_pipeline
@@ -35,26 +37,35 @@ def run_mexico_pipeline() -> None:
         database=DB_RAW,
     )
 
+    # --------- DB Creation for Mexico ----------
+    create_db(database_name=DB_MX, engine=engine)
+
     # ---------- Competitions by Country Pipeline ----------
     run_competitions_by_persons_of_country_pipeline(
         engine=engine,
         country_id=COUNTRY_ID,
-        db_country=DB_MX,
+        target_db=DB_MX,
+    )
+
+    # ---------- Continents Pipeline ----------
+    run_continents_pipeline(
+        engine=engine,
+        target_db=DB_MX,
     )
 
     # ---------- Persons by Country Pipeline ----------
     run_persons_by_country_pipeline(
         engine=engine,
         country_id=COUNTRY_ID,
-        db_country=DB_MX,
+        target_db=DB_MX,
     )
 
     # ---------- Results by Country Pipeline ---------
     run_results_by_country_pipeline(
         engine=engine,
         country_id=COUNTRY_ID,
-        db_country=DB_MX,
+        target_db=DB_MX,
     )
 
     # ---------- End of Pipeline ----------
-    print("Mexico data ingestion pipeline completed.")
+    print("Mexico data ingestion pipeline completed!")
