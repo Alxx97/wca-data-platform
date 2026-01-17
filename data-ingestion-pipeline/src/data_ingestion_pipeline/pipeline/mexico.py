@@ -1,9 +1,10 @@
 import os
 
-import pandas as pd
+from sqlalchemy.engine import Engine
 from dotenv import load_dotenv
 
 from data_ingestion_pipeline.db import get_db_engine
+from data_ingestion_pipeline.pipeline.competitions import run_competitions_by_persons_of_country_pipeline
 from data_ingestion_pipeline.pipeline.persons import run_persons_by_country_pipeline
 from data_ingestion_pipeline.pipeline.results import run_results_by_country_pipeline
 
@@ -26,7 +27,7 @@ def run_mexico_pipeline() -> None:
     DB_MX: str = "wca_mexico"
     COUNTRY_ID: str = "Mexico"
 
-    engine = get_db_engine(
+    engine: Engine = get_db_engine(
         user=USER,
         password=PASSWORD,
         host=HOST,
@@ -34,16 +35,21 @@ def run_mexico_pipeline() -> None:
         database=DB_RAW,
     )
 
+    # ---------- Competitions by Country Pipeline ----------
+    run_competitions_by_persons_of_country_pipeline(
+        engine=engine,
+        country_id=COUNTRY_ID,
+        db_country=DB_MX,
+    )
+
     # ---------- Persons by Country Pipeline ----------
-    print("Loading Mexico Persons data...")
     run_persons_by_country_pipeline(
         engine=engine,
         country_id=COUNTRY_ID,
         db_country=DB_MX,
     )
 
-    # ---------- Results by Country Pipeline ----------
-    print("Loading Mexico Results data...")
+    # ---------- Results by Country Pipeline ---------
     run_results_by_country_pipeline(
         engine=engine,
         country_id=COUNTRY_ID,

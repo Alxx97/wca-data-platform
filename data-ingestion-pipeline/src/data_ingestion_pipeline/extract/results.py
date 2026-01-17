@@ -1,6 +1,7 @@
 import pandas as pd
 from sqlalchemy.engine import Engine
 
+
 def extract_results_by_country(engine: Engine, country_id: str) -> pd.DataFrame:
     """
     Extracts results data from the database.

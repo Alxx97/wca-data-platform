@@ -23,6 +23,6 @@ def run_results_by_country_pipeline(engine: Engine, country_id: str, db_country:
         df=results,
         engine=engine,
         target_db=db_country,
-        target_table="results",
+        target_table="Results",
         method="replace",
     )
