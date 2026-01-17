@@ -1,9 +1,9 @@
-from sqlalchemy.engine import Engine
-from sqlalchemy import text
-from data_ingestion_pipeline.db import get_db_engine
-from data_ingestion_pipeline.db import create_db
-from dotenv import load_dotenv
 import os
+
+from data_ingestion_pipeline.db import create_db, get_db_engine
+from dotenv import load_dotenv
+from sqlalchemy import text
+from sqlalchemy.engine import Engine
 
 load_dotenv()
 
