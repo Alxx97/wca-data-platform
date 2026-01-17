@@ -10,6 +10,7 @@ from .formats import run_formats_pipeline
 from .mexico import run_mexico_pipeline
 from .persons import run_persons_by_country_pipeline
 from .ranks_average import run_ranks_average_by_country_pipeline
+from .ranks_single import run_ranks_single_by_country_pipeline
 from .results import run_results_by_country_pipeline
 
 __all__ = [
@@ -21,5 +22,6 @@ __all__ = [
     "run_mexico_pipeline",
     "run_persons_by_country_pipeline",
     "run_ranks_average_by_country_pipeline",
+    "run_ranks_single_by_country_pipeline",
     "run_results_by_country_pipeline",
 ]
