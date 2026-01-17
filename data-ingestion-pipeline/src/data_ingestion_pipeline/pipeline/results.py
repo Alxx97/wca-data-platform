@@ -12,7 +12,7 @@ def run_results_by_country_pipeline(
     Run the data ingestion pipeline for WCA-Country results data.
     """
 
-    print(f"Starting {country_id} Results data ingestion pipeline...")
+    print(f"Starting Results data ingestion pipeline for {country_id} to {target_db}...")
 
     results: pd.DataFrame = extract_results_by_country(
         engine=engine,

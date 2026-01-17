@@ -10,7 +10,7 @@ def run_countries_pipeline(engine: Engine, target_db: str) -> None:
     Run the data ingestion pipeline for WCA countries data.
     """
 
-    print("Starting Countries data ingestion pipeline...")
+    print(f"Starting Countries data ingestion pipeline to {target_db}...")
 
     countries: pd.DataFrame = extract_countries(
         engine=engine,

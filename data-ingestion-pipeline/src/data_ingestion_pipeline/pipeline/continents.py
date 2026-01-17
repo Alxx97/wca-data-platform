@@ -10,7 +10,7 @@ def run_continents_pipeline(engine: Engine, target_db: str) -> None:
     Run the data ingestion pipeline for WCA continents data.
     """
 
-    print("Starting Continents data ingestion pipeline...")
+    print(f"Starting Continents data ingestion pipeline to {target_db}...")
 
     continents: pd.DataFrame = extract_continents(
         engine=engine,

@@ -12,7 +12,7 @@ def run_competitions_by_persons_of_country_pipeline(
     Run the data ingestion pipeline for WCA-Country competitions data.
     """
 
-    print(f"Starting {country_id} Competitions data ingestion pipeline...")
+    print(f"Starting Competitions data ingestion pipeline for {country_id} to {target_db}...")
 
     competitions: pd.DataFrame = extract_competitions_by_persons_of_country(
         engine=engine,
