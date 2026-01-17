@@ -11,6 +11,7 @@ from .persons import extract_persons_by_country
 from .ranks_average import extract_ranks_average_by_country
 from .ranks_single import extract_ranks_single_by_country
 from .results import extract_results_by_country
+from .round_types import extract_round_types
 
 __all__ = [
     "extract_competitions_by_persons_of_country",
@@ -22,4 +23,5 @@ __all__ = [
     "extract_ranks_average_by_country",
     "extract_ranks_single_by_country",
     "extract_results_by_country",
+    "extract_round_types",
 ]

@@ -14,6 +14,7 @@ from .ranks_average import run_ranks_average_by_country_pipeline
 from .ranks_single import run_ranks_single_by_country_pipeline
 from .persons import run_persons_by_country_pipeline
 from .results import run_results_by_country_pipeline
+from .round_types import run_round_types_pipeline
 
 load_dotenv()
 
@@ -101,6 +102,12 @@ def run_mexico_pipeline() -> None:
     run_results_by_country_pipeline(
         engine=engine,
         country_id=COUNTRY_ID,
+        target_db=DB_MX,
+    )
+
+    # ---------- Round Types Pipeline ----------
+    run_round_types_pipeline(
+        engine=engine,
         target_db=DB_MX,
     )
 

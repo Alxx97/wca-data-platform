@@ -12,6 +12,7 @@ from .persons import run_persons_by_country_pipeline
 from .ranks_average import run_ranks_average_by_country_pipeline
 from .ranks_single import run_ranks_single_by_country_pipeline
 from .results import run_results_by_country_pipeline
+from .round_types import run_round_types_pipeline
 
 __all__ = [
     "run_continents_pipeline",
@@ -24,4 +25,5 @@ __all__ = [
     "run_ranks_average_by_country_pipeline",
     "run_ranks_single_by_country_pipeline",
     "run_results_by_country_pipeline",
+    "run_round_types_pipeline",
 ]
