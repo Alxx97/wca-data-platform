@@ -37,5 +37,6 @@ def main() -> None:
         for table in tables:
             print(f"- {table}")
 
+
 if __name__ == "__main__":
     main()

@@ -12,6 +12,7 @@ PASSWORD = os.getenv("DB_PASSWORD")
 HOST = os.getenv("DB_HOST", "localhost")
 PORT = int(os.getenv("DB_PORT", 3306))
 
+
 def main() -> None:
     """
     Basic script for checking database connection.
@@ -37,6 +38,7 @@ def main() -> None:
         print(f"Databases in the server:")
         for db in dbs:
             print(f"- {db}")
-    
+
+
 if __name__ == "__main__":
     main()

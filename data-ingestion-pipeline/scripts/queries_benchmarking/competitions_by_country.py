@@ -1,11 +1,10 @@
 import os
-
-from data_ingestion_pipeline.db import get_db_engine
-import pandas as pd
 import time
+
+import pandas as pd
+from data_ingestion_pipeline.db import get_db_engine
 from dotenv import load_dotenv
 from sqlalchemy.engine import Engine
-
 
 load_dotenv()
 
@@ -13,6 +12,7 @@ USER = os.getenv("DB_USER")
 PASSWORD = os.getenv("DB_PASSWORD")
 HOST = os.getenv("DB_HOST", "localhost")
 PORT = int(os.getenv("DB_PORT", 3306))
+
 
 def main() -> None:
 
@@ -84,7 +84,7 @@ def main() -> None:
     """
 
     times = {}
-    
+
     for i, (query, query_name) in enumerate(
         [
             (query_1, "CTE + JOIN"),
@@ -98,8 +98,10 @@ def main() -> None:
         end_time = time.time()
         elapsed_time = end_time - start_time
         times[query_name] = elapsed_time
-        print(f"Query {i} ({query_name}) returned {len(df)} rows in {elapsed_time:.4f} seconds.")
-    
+        print(
+            f"Query {i} ({query_name}) returned {len(df)} rows in {elapsed_time:.4f} seconds."
+        )
+
     print("\nSummary of execution times:")
     for query_name, elapsed_time in times.items():
         print(f"{query_name}: {elapsed_time:.4f} seconds")
