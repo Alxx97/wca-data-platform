@@ -10,6 +10,7 @@ from .continents import run_continents_pipeline
 from .countries import run_countries_pipeline
 from .events import run_events_pipeline
 from .formats import run_formats_pipeline
+from .ranks_average import run_ranks_average_by_country_pipeline
 from .persons import run_persons_by_country_pipeline
 from .results import run_results_by_country_pipeline
 
@@ -76,6 +77,13 @@ def run_mexico_pipeline() -> None:
 
     # ---------- Persons by Country Pipeline ----------
     run_persons_by_country_pipeline(
+        engine=engine,
+        country_id=COUNTRY_ID,
+        target_db=DB_MX,
+    )
+
+    # ---------- Ranks Average by Country Pipeline ----------
+    run_ranks_average_by_country_pipeline(
         engine=engine,
         country_id=COUNTRY_ID,
         target_db=DB_MX,

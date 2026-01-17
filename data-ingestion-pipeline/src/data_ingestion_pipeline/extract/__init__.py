@@ -8,6 +8,7 @@ from .countries import extract_countries
 from .events import extract_events
 from .formats import extract_formats
 from .persons import extract_persons_by_country
+from .ranks_average import extract_ranks_average_by_country
 from .results import extract_results_by_country
 
 __all__ = [
@@ -17,5 +18,6 @@ __all__ = [
     "extract_events",
     "extract_formats",
     "extract_persons_by_country",
+    "extract_ranks_average_by_country",
     "extract_results_by_country",
 ]
