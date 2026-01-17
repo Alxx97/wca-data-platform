@@ -28,14 +28,30 @@ def extract_competitions_by_persons_of_country(
     """
 
     query: str = f"""
-    WITH competitions_from_results AS (
-    SELECT DISTINCT r.competitionId AS competitionId
-    FROM wca.Results r
-    WHERE r.personCountryId = '{country_id}'
+    WITH
+    persons_by_country AS (
+        SELECT
+            id
+        FROM
+            wca.Persons p
+        WHERE
+            p.countryId = '{country_id}'
+    ),
+    competitions_by_persons_country AS (
+        SELECT
+            DISTINCT r.competitionId AS competitionId
+        FROM
+            wca.Results r
+            JOIN persons_by_country pc
+            ON r.personId = pc.id
     )
 
-    SELECT c.* FROM wca.Competitions c
-    JOIN competitions_from_results cfr ON c.id = cfr.competitionId
+    SELECT 
+        c.*
+    FROM
+        wca.Competitions c
+    WHERE
+        c.id IN (SELECT competitionId FROM competitions_by_persons_country);
     """
 
     df: pd.DataFrame = pd.read_sql_query(query, engine)

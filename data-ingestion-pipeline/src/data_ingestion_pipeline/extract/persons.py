@@ -25,11 +25,11 @@ def extract_persons_by_country(engine: Engine, country_id: str) -> pd.DataFrame:
 
     query: str = f"""
     SELECT
-        *
+        p.*
     FROM
-        Persons
+        Persons p
     WHERE
-        countryId = '{country_id}'
+        p.id IN (SELECT id FROM Persons WHERE countryId = '{country_id}');
     """
 
     df: pd.DataFrame = pd.read_sql_query(query, engine)

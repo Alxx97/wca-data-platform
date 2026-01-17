@@ -26,10 +26,20 @@ def extract_results_by_country(engine: Engine, country_id: str) -> pd.DataFrame:
     """
 
     query: str = f"""
-    SELECT
-        r.*
-    FROM Results r
-    WHERE r.personCountryId = '{country_id}'
+    WITH
+    persons_from_country AS (
+        SELECT
+            id
+        FROM
+            wca.Persons p
+        WHERE
+            p.countryId = '{country_id}'
+    )
+
+    SELECT ra.*
+    FROM wca.Results ra
+    JOIN persons_from_country pc
+    ON ra.personId = pc.id;    
     """
 
     df: pd.DataFrame = pd.read_sql_query(query, engine)
