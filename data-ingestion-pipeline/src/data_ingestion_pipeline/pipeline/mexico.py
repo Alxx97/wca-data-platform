@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 
 from data_ingestion_pipeline.db import get_db_engine
 from data_ingestion_pipeline.db import create_db
-from data_ingestion_pipeline.pipeline.continents import run_continents_pipeline
-from data_ingestion_pipeline.pipeline.competitions import run_competitions_by_persons_of_country_pipeline
-from data_ingestion_pipeline.pipeline.persons import run_persons_by_country_pipeline
-from data_ingestion_pipeline.pipeline.results import run_results_by_country_pipeline
+from .competitions import run_competitions_by_persons_of_country_pipeline
+from .continents import run_continents_pipeline
+from .persons import run_persons_by_country_pipeline
+from .results import run_results_by_country_pipeline
 
 load_dotenv()
 
