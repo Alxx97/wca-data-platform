@@ -15,6 +15,7 @@ from .ranks_single import run_ranks_single_by_country_pipeline
 from .persons import run_persons_by_country_pipeline
 from .results import run_results_by_country_pipeline
 from .round_types import run_round_types_pipeline
+from .scrambles import run_scrambles_by_persons_of_country_pipeline
 
 load_dotenv()
 
@@ -108,6 +109,13 @@ def run_mexico_pipeline() -> None:
     # ---------- Round Types Pipeline ----------
     run_round_types_pipeline(
         engine=engine,
+        target_db=DB_MX,
+    )
+
+    # ---------- Scrambles by Country Pipeline ----------
+    run_scrambles_by_persons_of_country_pipeline(
+        engine=engine,
+        country_id=COUNTRY_ID,
         target_db=DB_MX,
     )
 
