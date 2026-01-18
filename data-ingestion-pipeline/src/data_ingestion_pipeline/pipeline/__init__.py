@@ -2,6 +2,7 @@
 Module for data ingestion pipelines.
 """
 
+from .championships import run_championships_by_persons_of_country_pipeline
 from .competitions import run_competitions_by_persons_of_country_pipeline
 from .continents import run_continents_pipeline
 from .countries import run_countries_pipeline
@@ -16,8 +17,9 @@ from .round_types import run_round_types_pipeline
 from .scrambles import run_scrambles_by_persons_of_country_pipeline
 
 __all__ = [
-    "run_continents_pipeline",
+    "run_championships_by_persons_of_country_pipeline",
     "run_competitions_by_persons_of_country_pipeline",
+    "run_continents_pipeline",
     "run_countries_pipeline",
     "run_events_pipeline",
     "run_formats_pipeline",

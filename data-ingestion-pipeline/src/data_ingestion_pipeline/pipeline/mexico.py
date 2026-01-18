@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 from data_ingestion_pipeline.db import get_db_engine
 from data_ingestion_pipeline.db import create_db
+from .championships import run_championships_by_persons_of_country_pipeline
 from .competitions import run_competitions_by_persons_of_country_pipeline
 from .continents import run_continents_pipeline
 from .countries import run_countries_pipeline
@@ -46,6 +47,13 @@ def run_mexico_pipeline() -> None:
 
     # --------- DB Creation for Mexico ----------
     create_db(database_name=DB_MX, engine=engine)
+
+    # ---------- Championships by Country Pipeline ----------
+    run_championships_by_persons_of_country_pipeline(
+        engine=engine,
+        country_id=COUNTRY_ID,
+        target_db=DB_MX,
+    )
 
     # ---------- Competitions by Country Pipeline ----------
     run_competitions_by_persons_of_country_pipeline(
