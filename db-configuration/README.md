@@ -73,3 +73,23 @@ Requirements:
     ```shell
     pgload import_db.load
     ```
+7. If you want to assign public schema:
+    ```SQL
+    DO $$
+    DECLARE
+        r RECORD;
+    BEGIN
+        FOR r IN
+            SELECT tablename
+            FROM pg_tables
+            WHERE schemaname = 'wca'
+        LOOP
+            EXECUTE format(
+                'ALTER TABLE wca.%I SET SCHEMA public;',
+                r.tablename
+            );
+        END LOOP;
+    END $$;
+
+    DROP SCHEMA wca CASCADE;
+    ```
