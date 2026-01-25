@@ -18,15 +18,15 @@ Requirements:
     ```
 2. Import the data:
     ```shell
-    mariadb -u <username> -p wca < dump.sql
+    mariadb -u <username> -p wca < WCA_export.sql
     ```
 
-3. Create WCA DB in PgSQL:
+3. Create WCA DB in PgSQL. Access to PgSQL:
     ```shell
     psql -U postgres
     ```
 
-    The create db:
+    Then create WCA DB:
     ```
     CREATE DATABASE wca
     OWNER <user>
@@ -73,7 +73,7 @@ Requirements:
     ```shell
     pgload import_db.load
     ```
-7. If you want to assign public schema:
+7. (Optional, but not recommended fot this project) If you want to migrate wca data to public schema, run the following script:
     ```SQL
     DO $$
     DECLARE
