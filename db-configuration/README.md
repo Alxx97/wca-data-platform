@@ -3,6 +3,7 @@
 Requirements:
 1. Intall MariaDB
 2. Install PostgreSQL
+3. Create an user for PostgreSQL
 
 # Commands
 
@@ -73,7 +74,13 @@ Requirements:
     ```shell
     pgload import_db.load
     ```
-7. (Optional, but not recommended fot this project) If you want to migrate wca data to public schema, run the following script:
+
+7. For optimizing wca-db performance, you can create the indexes indicated in `wca_index_creation.sql`. You can run the script in terminal with:
+    ```shell
+    psql -U <you_user> -d wca -f db_optimization.sql
+    ```
+
+7. **(Optional, but not recommended for this project)** If you want to migrate wca data to public schema, run the following script:
     ```SQL
     DO $$
     DECLARE
